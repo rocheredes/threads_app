@@ -4,7 +4,7 @@ import { currentUser } from '@clerk/nextjs'
 
 async function OnboardingPage() {
   const user = await currentUser()
-
+  
   const userInfo = {}
 
   const userData = {
