@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
     bio: String,
     threads: [
         {
-            type: mongoose.Schema.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'Thread'
         }
     ],
@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     onboarded: { type: Boolean, default: false },
     communities: [
         {
-            type: mongoose.Schema.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'Community'
         }
     ]
