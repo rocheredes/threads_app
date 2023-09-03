@@ -9,15 +9,14 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
+    FormMessage
+
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from '../ui/textarea'
-import { url } from 'inspector'
 import { isBase64Image } from '@/lib/utils'
 import { useUploadThing } from '@/lib/uploadthing'
 import { updateUser } from '@/lib/actions/user.actions'
@@ -168,6 +167,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                                         {...field}
                                     />
                                 </FormControl>
+                                <FormMessage />
                             </FormItem>
                         )}
                     />
@@ -187,6 +187,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                                         {...field}
                                     />
                                 </FormControl>
+                                <FormMessage />
                             </FormItem>
                         )}
                     />
@@ -206,6 +207,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                                         {...field}
                                     />
                                 </FormControl>
+                                <FormMessage />
                             </FormItem>
                         )}
                     />
