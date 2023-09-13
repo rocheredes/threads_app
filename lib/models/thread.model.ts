@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Children } from "react";
+
 
 const threadSchema = new mongoose.Schema({
     text: { type: String, required: true },
@@ -20,11 +20,12 @@ const threadSchema = new mongoose.Schema({
     },
 
     parentId: { type: String },
-    children:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Thread'
-
-    }
+    children: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Thread",
+        },
+      ],
 
 })
 

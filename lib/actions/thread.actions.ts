@@ -17,7 +17,8 @@ export async function createThread({ text, author, communityId, path }: Params) 
         const createdThread = await Thread.create({
             text,
             author,
-            community: null
+            community: null,
+            children: []
         })
 
         // Update user model
@@ -26,7 +27,7 @@ export async function createThread({ text, author, communityId, path }: Params) 
         })
 
         revalidatePath(path)
-    } catch (error) {
+    } catch (error:any) {
         throw new Error(`Error created thread: ${error.message}`)
     }
 
@@ -100,4 +101,38 @@ export async function fetchThreadById(id: string) {
     } catch (error: any) {
         throw new Error(`Error fetching thread: ${error.message}`)
     }
+}
+
+export async function addCommentToThread(threadId: string, commentText: string, userId: string, path: string) {
+
+    connectToDB()
+    try {
+        const originalThread = await Thread.findById(threadId)
+        if (!originalThread) {
+            throw new Error("Thread not found")
+        }
+
+        const commentThread = new Thread({
+            text: commentText,
+            author: userId,
+            parentId: threadId
+        })
+
+        // Save the new thread
+        const savedCommentThread = await commentThread.save()
+        
+        // Update the original thread to include the new comment
+        originalThread.children.push(savedCommentThread._id)
+
+        // saved the original thread
+        await originalThread.save()
+
+        revalidatePath(path)
+
+
+    } catch (error: any) {
+        throw new Error(`Error adding comment to thread: ${error.message}`)
+    }
+
+
 }
