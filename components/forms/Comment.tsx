@@ -57,6 +57,7 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
             <FormItem className='flex w-full items-center gap-3'>
               <FormLabel>
                 <Image
+                 
                   src={currentUserImg}
                   alt='current_user'
                   width={48}
